@@ -18,5 +18,4 @@ phases:
       - docker push 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest
 artifacts:
   files:
-    - server.js
-    - package.json
+    - '**/*'
