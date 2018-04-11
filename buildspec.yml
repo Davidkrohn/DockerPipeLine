@@ -1,6 +1,6 @@
 version: 0.2
 env:
-  parameter-store:
+  Variables:
     AWS_DEFAULT_REGION: "us-east-2"
 
 phases:
