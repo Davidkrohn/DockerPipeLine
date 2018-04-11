@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:6.10.0-alpine
 
 ENV DOCKER_BUCKET="download.docker.com" \
     DOCKER_VERSION="17.09.0-ce" \
