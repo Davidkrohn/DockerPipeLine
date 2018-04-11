@@ -11,7 +11,8 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...          
+      - echo Building the Docker image... 
+      - docker run         
       - docker build -t dockertest .
       - docker tag dockertest:latest 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest      
   post_build:
