@@ -1,4 +1,4 @@
-FROM node:6.10.0-alpine
+FROM node:carbon
 
 ENV DOCKER_BUCKET="download.docker.com" \
     DOCKER_VERSION="17.09.0-ce" \
@@ -19,7 +19,7 @@ RUN npm install
 RUN npm install aws-cli
 
 RUN set -x \
-    && curl -fSL "https://${DOCKER_BUCKET}/linux/static/${DOCKER_CHANNEL}/x86_64/docker-${DOCKER_VERSION}.tgz" -o docker.tgz \
+    && curl -fSL "https://${DOCKER_BUCKET}/linux/static/${DOCKER_CHANNEL}/x86_64/docker-18.03.0-ce.tgz" -o docker.tgz \
     && echo "${DOCKER_SHA256} *docker.tgz" | sha256sum -c - \
     && tar --extract --file docker.tgz --strip-components 1  --directory /usr/local/bin/ \
     && rm docker.tgz \
@@ -46,5 +46,5 @@ COPY . .
 EXPOSE 8080
 
 CMD [ "npm", "start" ]
-CMD docker start
+ENTRYPOINT ["dockerd-entrypoint.sh"]
 
