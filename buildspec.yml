@@ -1,25 +1,14 @@
-version: 0.1
-env:
-  Variables:
-    AWS_DEFAULT_REGION: "us-east-2"
+version: 0.2
 
 phases:
   install:
     commands:
-      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay&
+      - timeout -t 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-
+      - docker build -t helloworld .
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...        
-      - docker build -t dockertest .
-      - docker tag dockertest:latest 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest      
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest
+      - docker images
+      - docker run helloworld echo "Hello, World!" 
