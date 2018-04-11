@@ -1,12 +1,18 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
   pre_build:
     commands:
-      - docker build -t helloworld .
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region us-east-2)
   build:
     commands:
-      - docker images
-      - docker run helloworld echo "Hello, World!" 
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t dockertest .
+      - docker tag dockertest:latest 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest
