@@ -20,5 +20,3 @@ artifacts:
   files:
     - server.js
     - package.json
-    - Dockerfile
-    - Dockerrun.aws.json 

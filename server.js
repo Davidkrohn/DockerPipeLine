@@ -1,13 +1,13 @@
-//Load express module with `require` directive
-var express = require('express')
-var app = express()
+var express = require('express');
 
-//Define request response in root URL (/)
+// Constants
+var PORT = 80;
+
+// App
+var app = express();
 app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+  res.send('Hello EB from Node running in Docker!\n');
+});
 
-//Launch listening server on port 8081
-app.listen(8081, function () {
-  console.log('app listening on port 8081!')
-})
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);
