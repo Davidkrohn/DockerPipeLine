@@ -1,11 +1,11 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-        "Name": "node:carbon"
+        "Name": "node:7"
     },
     "Ports": [
         { 
-            "ContainerPort": "80"
+            "ContainerPort": "8081"
         }
     ]
 }

@@ -1,18 +1,13 @@
-// Get dependencies
-var express     = require('express');
-var morgan      = require('morgan');
+//Load express module with `require` directive
+var express = require('express')
+var app = express()
 
-var app = express();
-var server = require('http').Server(app);
-port = process.env.PORT || 80;
+//Define request response in root URL (/)
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
 
-// Catch all other routes and return the index file
-app.get('/', (req, res) => {
-  res.send("hello world!!");
-});
-
-// use morgan to log requests to the console
-app.use(morgan('dev')); 
-
-server.listen(port);
-console.log('App running at http://localhost:' + port);
+//Launch listening server on port 8081
+app.listen(8081, function () {
+  console.log('app listening on port 8081!')
+})
