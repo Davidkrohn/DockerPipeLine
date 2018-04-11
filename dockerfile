@@ -34,7 +34,7 @@ RUN set -x \
     && chmod +x /usr/local/bin/dind /usr/local/bin/docker-compose \
 # Ensure docker-compose works
     && docker-compose version
-    
+
 
 
 # If you are building your code for production
@@ -46,3 +46,5 @@ COPY . .
 EXPOSE 8080
 
 CMD [ "npm", "start" ]
+CMD docker start
+
