@@ -1,15 +1,18 @@
 version: 0.2
+env:
+  parameter-store:
+    AWS_DEFAULT_REGION: "us-east-2"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t dockertest:latest .
+      - docker build -t dockertest .
       - docker tag dockertest:latest 415896052078.dkr.ecr.us-east-2.amazonaws.com/dockertest:latest      
   post_build:
     commands:
